@@ -18,7 +18,7 @@ gemmirror() {
     do
         gem source -r "$mirror"
     done
-    gem source -a "http://apt-mirror.front.sepia.ceph.com/rubygems.org/"
+    gem source -a "http://rubygems.org/"
 }
 
 
