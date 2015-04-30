@@ -18,7 +18,7 @@ gemmirror() {
     do
         gem source -r "$mirror"
     done
-    gem source -a "http://rubygems.org/"
+    gem source -a "https://ruby.taobao.org/"
 }
 
 
