@@ -1,6 +1,6 @@
 # Check if burnupi/plana
-if !node['hostname'].match(/^(plana|burnupi|mira|vpm|tala|saya|dubia|apama|rhoda|magna|typica)/)
- raise "This recipe is only intended for plana/burnupi/mira/vpm/tala/saya/dubia/apama/magna/typica hosts"
+if !node['hostname'].match(/^(plana|burnupi|mira|vpm|tala|saya|dubia|apama|rhoda|magna|typica|vjenkins)/)
+ raise "This recipe is only intended for plana/burnupi/mira/vpm/tala/saya/dubia/apama/magna/typica|vjenkins hosts"
 end
 
 
