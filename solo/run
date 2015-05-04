@@ -14,7 +14,7 @@ fedora=$(echo $distro | grep -ic fedora || true)
 trusty=$(echo $distroversion | grep -ic '14\.04' || true)
 
 gemmirror() {
-    for mirror in $(gem source | grep http || true)
+    for mirror in $(gem source | grep rubygems || true)
     do
         gem source -r "$mirror"
     done
@@ -56,7 +56,7 @@ if [ $ubuntu -gt 0 ]; then
 	    $missing
     fi
 
-    CHEF_BIN_DIR="${HOME}/.gem/ruby/1.9.1/bin"
+    CHEF_BIN_DIR="${HOME}/.gem/ruby/2.2.0/bin"
     CHEF_BIN="$CHEF_BIN_DIR/chef-solo"
     gemmirror
 
@@ -72,10 +72,10 @@ if [ $ubuntu -gt 0 ]; then
         export LANGUAGE=en_US.UTF-8
         export LC_ALL=en_US.UTF-8
 
-        sudo gem1.9.1 install --no-rdoc --no-ri mime-types -v "<2.0"
+        sudo gem install --no-rdoc --no-ri mime-types -v "<2.0"
     fi
     if [ ! -e "$CHEF_BIN" ]; then
-        gem1.9.1 install --no-rdoc --no-ri --user-install chef
+        gem install --no-rdoc --no-ri --user-install chef
     fi
     if [ $debian -gt 0 ]
     then
