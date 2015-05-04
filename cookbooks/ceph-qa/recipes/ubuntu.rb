@@ -2,9 +2,9 @@
 include_recipe "ceph-qa::pip_mirror"
 
 #Fail if ubuntu != 1000 UID
-if node['etc']['passwd']['ubuntu']['uid'] != 1000
- raise "The ubuntu user should be UID of 1000. It is not. Re-image this machine."
-end
+#if node['etc']['passwd']['ubuntu']['uid'] != 1000
+# raise "The ubuntu user should be UID of 1000. It is not. Re-image this machine."
+#end
 
 
 # remove ceph packages (if any)
@@ -44,34 +44,34 @@ if node[:languages][:ruby][:host_cpu] == "arm"
 end
 
 #Setup sources.list to use our apt mirror.
-if node[:languages][:ruby][:host_cpu] != "arm"
-  case node[:platform]
-  when "ubuntu"
-    case node[:platform_version]
-    when "12.04"
-      cookbook_file '/etc/apt/sources.list' do
-        source "sources.list.precise"
-        mode 0644
-        owner "root"
-        group "root"
-      end
-    when "12.10"
-      cookbook_file '/etc/apt/sources.list' do
-        source "sources.list.quantal"
-        mode 0644
-        owner "root"
-        group "root"
-      end
-    when "14.04"
-      cookbook_file '/etc/apt/sources.list' do
-        source "sources.list.trusty"
-        mode 0644
-        owner "root"
-        group "root"
-      end
-    end
-  end
-end
+#if node[:languages][:ruby][:host_cpu] != "arm"
+#  case node[:platform]
+#  when "ubuntu"
+#    case node[:platform_version]
+#    when "12.04"
+#      cookbook_file '/etc/apt/sources.list' do
+#        source "sources.list.precise"
+#        mode 0644
+#        owner "root"
+#        group "root"
+#      end
+#    when "12.10"
+#      cookbook_file '/etc/apt/sources.list' do
+#        source "sources.list.quantal"
+#        mode 0644
+#        owner "root"
+#        group "root"
+#      end
+#    when "14.04"
+#      cookbook_file '/etc/apt/sources.list' do
+#        source "sources.list.trusty"
+#        mode 0644
+#        owner "root"
+#        group "root"
+#      end
+#    end
+#  end
+#end
 
 if node[:languages][:ruby][:host_cpu] != "arm"
   cookbook_file '/etc/cron.weekly/kernel-clean' do
@@ -113,19 +113,20 @@ file '/etc/apt/sources.list.d/ceph-extras.list' do
 end
 
 # blkin libraries, only trusty has new enough lttng for these
-if node[:platform] == "ubuntu" and node[:platform_version] == "14.04"
-  file '/etc/apt/sources.list.d/blkin.list' do
-    owner 'root'
-    group 'root'
-    mode '0644'
-    content "deb [arch=amd64] http://apt-mirror.front.sepia.ceph.com/blkin/ trusty main\n"
-  end
-  execute "apt-get update" do
-    command "apt-get update"
-  end
-  package 'blkin'
-  package 'lttng-tools'
-end
+#if node[:platform] == "ubuntu" and node[:platform_version] == "14.04"
+#  file '/etc/apt/sources.list.d/blkin.list' do
+#    owner 'root'
+#    group 'root'
+#    mode '0644'
+#    #content "deb [arch=amd64] http://apt-mirror.front.sepia.ceph.com/blkin/ trusty main\n"
+#    content ""
+#  end
+#  execute "apt-get update" do
+#    command "apt-get update"
+#  end
+#  package 'blkin'
+#  package 'lttng-tools'
+#end
 
 execute "add release gpg key to apt" do
   command <<-EOH

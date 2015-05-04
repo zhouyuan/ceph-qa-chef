@@ -81,7 +81,7 @@ if [ $ubuntu -gt 0 ]; then
     then
         sudo -E "$CHEF_BIN" -c solo.rb -j solo.json
     else
-        sudo "$CHEF_BIN" -c solo.rb -j solo.json
+        sudo -E "$CHEF_BIN" -c solo.rb -j solo.json
     fi
 fi
 
