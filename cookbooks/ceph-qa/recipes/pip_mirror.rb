@@ -10,7 +10,7 @@ file '/home/ubuntu/.pip/pip.conf' do
   mode '0644'
   content <<-EOH
 [global]
-index-url = http://pypi.mirrors.ustc.edu.cn/simple
+#index-url = http://pypi.mirrors.ustc.edu.cn/simple
   EOH
 end
 
